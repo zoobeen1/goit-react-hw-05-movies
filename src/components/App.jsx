@@ -8,20 +8,13 @@ import { Modal } from './Modal';
 export function App() {
   //States
   const [query, setQuery] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
-  const [imgName, setImgName] = useState('');
+
   const [showModal, setShowModal] = useState(false);
 
   //Functions
   //Тоглим модалку
   const togleModal = () => setShowModal(pshowModal => !pshowModal);
 
-  //Вызов модалки
-  const onModal = (url, name) => {
-    setImgUrl(url);
-    setImgName(name);
-    togleModal();
-  };
   //Нажали кнопку поиска - обработчик
   const handleFormSubmit = searchQuery => {
     setQuery(searchQuery);
@@ -34,11 +27,7 @@ export function App() {
       <Searchbar onSubmit={handleFormSubmit} />
 
       <ToastContainer autoClose={1000} />
-      {showModal && (
-        <Modal togleModal={togleModal}>
-          <img src={imgUrl} alt={imgName} />
-        </Modal>
-      )}
+      {showModal && <Modal togleModal={togleModal}></Modal>}
     </>
   );
 }
