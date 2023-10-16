@@ -3,7 +3,7 @@ import { Dna } from 'react-loader-spinner';
 export const Loader = () => {
   return (
     <Container>
-      <Dna visible={true} height="400" width="400" ariaLabel="dna-loading" />
+      <Dna visible={true} height="200" width="200" ariaLabel="dna-loading" />
     </Container>
   );
 };

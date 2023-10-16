@@ -5,9 +5,9 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { HomePage } from 'pages/HomePage';
 import { Movies } from 'pages/Movies';
-import { MovieDetails } from 'pages/MovieDetails';
-import { Cast } from 'pages/Cast';
-import { Review } from 'pages/Review';
+import { MovieDetails } from 'components/MovieDetails/MovieDetails';
+import { Cast } from 'components/Cast/Cast';
+import { Reviews } from 'components/Reviews/Reviews';
 import { Trending } from './Trending/Trending';
 
 export function App() {
@@ -17,9 +17,10 @@ export function App() {
         <Route path="/" element={<HomePage />}>
           <Route index element={<Trending />} />
           <Route path="movies" element={<Movies />} />
-          <Route path="movie/:movieId" element={<MovieDetails />} />
-          <Route path="movie/:movieId/cast" element={<Cast />} />
-          <Route path="movie/:movieId/reviews" element={<Review />} />
+          <Route path="movie/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
         </Route>
         <Route path="*" element={<HomePage />} />
       </Routes>
