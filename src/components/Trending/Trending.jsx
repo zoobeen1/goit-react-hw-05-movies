@@ -6,8 +6,8 @@ export const Trending = () => {
   const [movies, setMovies] = useState(null);
   async function onLoad() {
     try {
-      const resp = await fetchMovies('trending/all/day');
-      // if (resp) console.log(resp);
+      const resp = await fetchMovies('trending/movie/day');
+      if (resp) console.log(resp);
       setMovies(resp.results);
       return;
     } catch (error) {
@@ -27,9 +27,7 @@ export const Trending = () => {
           movies.map(movie => {
             return (
               <li key={movie.id}>
-                <Link to={'movie/' + movie.id}>
-                  {movie.title ? movie.title : movie.name}
-                </Link>
+                <Link to={'movie/' + movie.id}>{movie.title}</Link>
               </li>
             );
           })}

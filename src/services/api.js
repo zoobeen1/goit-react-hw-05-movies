@@ -11,6 +11,7 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const instance = axios.create({
   baseURL: BASE_URL,
+  params: { language: 'en-US' },
   headers: {
     accept: 'application/json',
     Authorization: 'Bearer ' + API_KEY,
