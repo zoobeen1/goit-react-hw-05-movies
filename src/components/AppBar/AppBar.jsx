@@ -5,9 +5,9 @@ import { AppBarStyled } from './AppBarStyled';
 const navItems = [
   { href: '/', text: 'Home' },
   { href: '/movies', text: 'Movies' },
-  { href: '/movies/:movieId', text: 'MovieDetails' },
-  { href: '/movies/:movieId/cast', text: 'Cast' },
-  { href: '/movies/:movieId/reviews', text: 'Reviews' },
+  // { href: '/movies/:movieId', text: 'MovieDetails' },
+  // { href: '/movies/:movieId/cast', text: 'Cast' },
+  // { href: '/movies/:movieId/reviews', text: 'Reviews' },
 ];
 
 export const AppBar = () => {

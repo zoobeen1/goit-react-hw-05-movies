@@ -1,31 +1,32 @@
 import axios from 'axios';
 
-const PIXA_KEY = '27472864-20a91975f294fe19c608dc0e7';
-const BASE_URL = 'https://pixabay.com/api/';
+const API_KEY =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjI2NzM2NDE0YjQyOThhMjhhNTBjMWI4ODEzZTlhNiIsInN1YiI6IjY1MjU2Y2UzNDQ3ZjljMDBhZDcxNDZjNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8rEsMXUCTlrOZG7wX4q7BjxLIzMsf9BEzSeowZL4e8g';
+const BASE_URL = 'https://api.themoviedb.org/3/';
 
-const params = {
-  q: '', //Qery (строка запроса поиска)
-  image_type: 'photo',
-  orientation: 'horizontal',
-  safesearch: false,
-  per_page: 12,
-  page: 1,
-};
+// const params = {
+//   page: 1,
+//   per_page: 20,
+// };
+
 const instance = axios.create({
   baseURL: BASE_URL,
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer ' + API_KEY,
+  },
 });
 //functions
 //read
-async function getPhotos() {
+export async function fetchMovies(endpoint, params = {}) {
   try {
-    const resp = await instance.get('', {
-      params: { key: PIXA_KEY, ...params },
-    });
-    return await resp.data;
+    const resp = await instance.get(endpoint, { ...params });
+    return resp.data;
   } catch (err) {
-    console.log('Трай кетч - ', err.message, ' ', err.response.data);
-    return err;
+    console.log(err);
   }
 }
-const API = { params, getPhotos };
-export default API;
+
+// const API = { params, fetchMovies };
+
+// export default API;

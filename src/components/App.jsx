@@ -8,17 +8,18 @@ import { Movies } from 'pages/Movies';
 import { MovieDetails } from 'pages/MovieDetails';
 import { Cast } from 'pages/Cast';
 import { Review } from 'pages/Review';
+import { Trending } from './Trending/Trending';
 
 export function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />}>
-          <Route index element={<div> HomePage</div>} />
+          <Route index element={<Trending />} />
           <Route path="movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieDetails />} />
-          <Route path="movies/:movieId/cast" element={<Cast />} />
-          <Route path="movies/:movieId/reviews" element={<Review />} />
+          <Route path="movie/:movieId" element={<MovieDetails />} />
+          <Route path="movie/:movieId/cast" element={<Cast />} />
+          <Route path="movie/:movieId/reviews" element={<Review />} />
         </Route>
         <Route path="*" element={<HomePage />} />
       </Routes>
