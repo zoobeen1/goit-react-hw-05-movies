@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const SearchbarStyled = styled.header`
+export const SearchbarStyled = styled.div`
   top: 0;
   left: 0;
   position: sticky;
@@ -22,7 +22,7 @@ export const FormStyled = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  /* max-width: 600px; */
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;

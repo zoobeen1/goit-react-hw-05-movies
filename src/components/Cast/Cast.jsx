@@ -23,19 +23,23 @@ export const Cast = () => {
     const f = async () => {
       try {
         const resp = await fetchMovies('movie/' + movieId + '/credits');
-        // if (resp) console.log(resp);
-        setMovieCredits(resp.cast);
-        setStatus('resolved');
-        return;
+        if (resp.cast.length > 0) {
+          setMovieCredits(resp.cast);
+          setStatus('resolved');
+          return;
+        }
+        setStatus('rejected');
       } catch (error) {
         console.log(error);
+        setStatus('rejected');
       }
     };
     f();
   }, [movieId]);
   if (status === 'pending') return <Loader />;
-  if (movieCredits) {
-    // console.log(movieCredits);
+  if (status === 'rejected')
+    return <h2>Sorry! We have no information about the actors.</h2>;
+  if (status === 'resolved') {
     return (
       <List>
         {movieCredits.map(actor => (

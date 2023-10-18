@@ -1,16 +1,9 @@
 import styled from 'styled-components';
-export const Container = styled.div`
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-bottom: 20px;
-
+export const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  /* border-bottom: 1px solid black; */
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
 `;
-
 export const Details = styled.div`
   padding-top: 20px;
   padding-left: 20px;
@@ -42,10 +35,19 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   margin-right: 10px;
 `;
-export const Additional = styled.div`
-  padding-top: 20px;
+export const Container = styled.div`
+  padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 20px;
-  margin-bottom: 10px;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+
+  /* margin-bottom: 10px; */
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.5);
+`;
+export const Back = styled.div`
+  margin: 10px;
+
+  display: inline-block;
+  border: solid 1px rgba(66, 62, 62, 0.5);
+  border-radius: 3px;
 `;

@@ -1,10 +1,11 @@
 import { fetchMovies } from 'services/api';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Title, List, ListItem } from './TrendingStyled';
+import { Link, useLocation } from 'react-router-dom';
+import { Title, List, ListItem, Wrapper } from './TrendingStyled';
 import { Loader } from 'components/Loader';
 
 export const Trending = () => {
+  const location = useLocation();
   const [status, setStatus] = useState('idle');
   //State machine:
   //idle - простой,
@@ -33,18 +34,20 @@ export const Trending = () => {
   }, []);
   if (status === 'pending') return <Loader />;
   return (
-    <>
+    <Wrapper>
       <Title>Trending today</Title>
       <List>
         {movies &&
           movies.map(movie => {
             return (
               <ListItem key={movie.id}>
-                <Link to={'movie/' + movie.id}>{movie.title}</Link>
+                <Link to={'movies/' + movie.id} state={{ from: location }}>
+                  {movie.title}
+                </Link>
               </ListItem>
             );
           })}
       </List>
-    </>
+    </Wrapper>
   );
 };

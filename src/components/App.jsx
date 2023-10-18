@@ -13,18 +13,19 @@ import { Trending } from './Trending/Trending';
 export function App() {
   return (
     <>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<Trending />} />
           <Route path="movies" element={<Movies />} />
-          <Route path="movie/:movieId" element={<MovieDetails />}>
+          <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
         <Route path="*" element={<HomePage />} />
       </Routes>
-      <GlobalStyle />
+
       <ToastContainer autoClose={1000} />
     </>
   );

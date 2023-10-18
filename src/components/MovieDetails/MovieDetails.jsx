@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovies } from 'services/api';
 import { Loader } from 'components/Loader';
 import {
@@ -11,13 +11,16 @@ import {
   Heading,
   List,
   ListItem,
-  Additional,
+  Wrapper,
+  Back,
 } from './MovieDetailesStyled';
 
 const IMG_BASE_URL = 'http://image.tmdb.org/t/p/';
 const IMG_SIZE = 'w300';
 
 export const MovieDetails = () => {
+  const location = useLocation();
+  const backLink = location.state?.from ?? '/';
   const [status, setStatus] = useState('idle');
   //State machine:
   //idle - простой,
@@ -47,42 +50,55 @@ export const MovieDetails = () => {
   }, [movieId]);
 
   if (status === 'pending') return <Loader />;
-  if (movie)
+  if (movie) {
+    // console.log(location);
     return (
       <>
+        <Back>
+          <Link to={backLink}>Go Back</Link>
+        </Back>
         <Container>
-          <ImgStyled
-            src={IMG_BASE_URL + IMG_SIZE + movie.poster_path}
-            alt={movie.title}
-          />
-          <Details>
-            <Title>{movie.title}</Title>
+          <Wrapper>
+            <ImgStyled
+              src={IMG_BASE_URL + IMG_SIZE + movie.poster_path}
+              alt={movie.title}
+            />
+            <Details>
+              <Title>{movie.title}</Title>
 
-            <Paragraph>User score: {movie.vote_average}</Paragraph>
-            <Heading>Overview</Heading>
-            <Paragraph>{movie.overview}</Paragraph>
-            <Heading>Genres</Heading>
-            <List>
-              {movie.genres.map(genre => (
-                <ListItem key={genre.id}>{genre.name}</ListItem>
-              ))}
-            </List>
-          </Details>
+              <Paragraph>User score: {movie.vote_average}</Paragraph>
+              <Heading>Overview</Heading>
+              <Paragraph>{movie.overview}</Paragraph>
+              <Heading>Genres</Heading>
+              <List>
+                {movie.genres.map(genre => (
+                  <ListItem key={genre.id}>{genre.name}</ListItem>
+                ))}
+              </List>
+            </Details>
+          </Wrapper>
         </Container>
-        <Additional>
+
+        <Container>
           <Heading>Additional information</Heading>
           <List>
             <ListItem>
-              <Link to="cast">Cast</Link>
+              <Link to="cast" state={{ from: backLink }}>
+                Cast
+              </Link>
             </ListItem>
             <ListItem>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews" state={{ from: backLink }}>
+                Reviews
+              </Link>
             </ListItem>
           </List>
-        </Additional>
+        </Container>
+
         <Outlet />
       </>
     );
+  }
 
   return (
     <div>

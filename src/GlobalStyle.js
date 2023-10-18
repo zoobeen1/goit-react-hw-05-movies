@@ -110,9 +110,6 @@ nav,
 section {
   display: block;
 }
-body {
-  line-height: 1;
-}
 ol,
 ul {
   list-style: none;
@@ -132,6 +129,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+a {
+  text-decoration: none;
+}
+
 img {
   display: block;
   width: 100%;
@@ -143,6 +145,7 @@ h2 {
   margin-bottom: 1rem;
 }
 body {
+    line-height: 1;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
