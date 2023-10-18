@@ -1,5 +1,11 @@
 import React, { useEffect, useState, Suspense } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { fetchMovies } from 'services/api';
 import { Loader } from 'components/Loader';
 import {
@@ -14,11 +20,13 @@ import {
   Wrapper,
   Back,
 } from './MovieDetailesStyled';
+import { Button } from 'components/Button';
 
 const IMG_BASE_URL = 'http://image.tmdb.org/t/p/';
 const IMG_SIZE = 'w300';
 
 const MovieDetails = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const backLink = location.state?.from ?? '/';
   const [status, setStatus] = useState('idle');
@@ -29,6 +37,11 @@ const MovieDetails = () => {
   //rejected - отклонено
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
+
+  function onClick() {
+    navigate(backLink, { replace: false });
+    console.log(backLink);
+  }
 
   useEffect(() => {
     setStatus('pending');
@@ -53,10 +66,10 @@ const MovieDetails = () => {
   if (movie) {
     return (
       <>
-        <Back>
-          <Link to={backLink}>Go Back</Link>
-        </Back>
+        {/* <Link to={backLink}>Go Back</Link> */}
+
         <Container>
+          <Button onClick={onClick} />
           <Wrapper>
             <ImgStyled
               src={IMG_BASE_URL + IMG_SIZE + movie.poster_path}

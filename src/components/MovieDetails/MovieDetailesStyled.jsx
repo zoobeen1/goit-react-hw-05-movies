@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 export const Wrapper = styled.div`
+  /* padding-top: 5px; */
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -36,7 +37,7 @@ export const ListItem = styled.li`
   margin-right: 10px;
 `;
 export const Container = styled.div`
-  padding-top: 10px;
+  padding-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 20px;
