@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { useSearchParams, useLocation, Link, NavLink } from 'react-router-dom';
+import { useSearchParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchMovies } from 'services/api';
 import {
   FormStyled,
