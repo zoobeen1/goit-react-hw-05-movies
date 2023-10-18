@@ -18,7 +18,6 @@ import {
   List,
   ListItem,
   Wrapper,
-  Back,
 } from './MovieDetailesStyled';
 import { Button } from 'components/Button';
 
@@ -40,7 +39,6 @@ const MovieDetails = () => {
 
   function onClick() {
     navigate(backLink, { replace: false });
-    console.log(backLink);
   }
 
   useEffect(() => {
@@ -66,8 +64,6 @@ const MovieDetails = () => {
   if (movie) {
     return (
       <>
-        {/* <Link to={backLink}>Go Back</Link> */}
-
         <Container>
           <Button onClick={onClick} />
           <Wrapper>

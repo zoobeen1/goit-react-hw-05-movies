@@ -1,5 +1,9 @@
 import { ButtonStyled } from './Button.styled';
 
 export function Button({ onClick }) {
-  return <ButtonStyled onClick={onClick}>Go Back...</ButtonStyled>;
+  return (
+    <ButtonStyled type="button" onClick={onClick}>
+      Go Back...
+    </ButtonStyled>
+  );
 }
