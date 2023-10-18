@@ -1,13 +1,12 @@
-import React from 'react';
-import { Searchbar } from 'components/Searchbar';
-// import { useSearchParams } from 'react-router-dom';
+import React, { Suspense } from 'react';
 
-export const Movies = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // console.log('All params - ', searchParams);
+import { Outlet } from 'react-router-dom';
+
+function Movies() {
   return (
-    <>
-      <Searchbar />
-    </>
+    <Suspense fallback={<div>Error</div>}>
+      <Outlet />
+    </Suspense>
   );
-};
+}
+export default Movies;

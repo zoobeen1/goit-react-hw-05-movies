@@ -1,18 +1,19 @@
 import { toast } from 'react-toastify';
-import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useSearchParams, useLocation, Link, NavLink } from 'react-router-dom';
 import { fetchMovies } from 'services/api';
 import {
-  SearchbarStyled,
   FormStyled,
   InputStyled,
   ButtonStyled,
   ButtonLabelStyled,
+  ListItem,
+  List,
 } from './Searchbar.styled';
 import { useState } from 'react';
 import { Loader } from 'components/Loader';
 import { useEffect } from 'react';
 
-export function Searchbar() {
+function Searchbar() {
   const [status, setStatus] = useState('idle');
   //State machine:
   //idle - простой,
@@ -34,9 +35,7 @@ export function Searchbar() {
       toast.error('Введите запрос прежде чем отправлять!!!');
       return;
     }
-
     fetch();
-    console.log(location);
   }
   // Вызывается при изменении поля ввода
   // изменяет searchParameters - паттерн "Контролируемый элемент"
@@ -44,26 +43,23 @@ export function Searchbar() {
     setSearchParams({ searchQuery: e.currentTarget.value.toLowerCase() });
   };
 
-  //
-  const fetch = async () => {
-    setStatus('pending');
-    try {
-      const resp = await fetchMovies('search/movie', { query: searchQuery });
-      if (resp) {
-        console.log(resp);
-        setStatus('resolved');
-        setMovies(resp.results);
+  useEffect(() => {
+    const foo = async () => {
+      setStatus('pending');
+      try {
+        const resp = await fetchMovies('search/movie', { query: searchQuery });
+        if (resp) {
+          setStatus('resolved');
+          setMovies(resp.results);
+          return;
+        }
+      } catch (error) {
+        console.log(error);
         return;
       }
-    } catch (error) {
-      console.log(error);
-      return;
-    }
-  };
-
-  useEffect(() => {
-    if (searchQuery) fetch();
-  }, []);
+    };
+    foo();
+  }, [searchQuery]);
 
   // *************************************************************************
   return (
@@ -84,16 +80,17 @@ export function Searchbar() {
       </FormStyled>
       {status === 'pending' && <Loader />}
       {status === 'resolved' && (
-        <ul>
+        <List>
           {movies.map(movie => (
-            <li key={movie.id}>
-              <Link Link to={movie.id.toString()} state={{ from: location }}>
+            <ListItem key={movie.id}>
+              <NavLink to={movie.id.toString()} state={{ from: location }}>
                 {movie.title}
-              </Link>
-            </li>
+              </NavLink>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </>
   );
 }
+export default Searchbar;

@@ -81,3 +81,11 @@ export const InputStyled = styled.input`
     font-size: 18px;
   }
 `;
+export const List = styled.ul`
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+`;
+export const ListItem = styled.li`
+  padding-bottom: 5px;
+`;

@@ -4,7 +4,7 @@ import { fetchMovies } from 'services/api';
 import { Author, List, ListItem, Paragraph } from './ReviewsStyled';
 import { Loader } from 'components/Loader';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [status, setStatus] = useState('idle');
   //State machine:
   //idle - простой,
@@ -49,3 +49,4 @@ export const Reviews = () => {
   }
   return <p>Sorry. But for this film we have no reviews.</p>;
 };
+export default Reviews;

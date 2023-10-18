@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Title, List, ListItem, Wrapper } from './TrendingStyled';
 import { Loader } from 'components/Loader';
 
-export const Trending = () => {
+const Trending = () => {
   const location = useLocation();
   const [status, setStatus] = useState('idle');
   //State machine:
@@ -51,3 +51,4 @@ export const Trending = () => {
     </Wrapper>
   );
 };
+export default Trending;

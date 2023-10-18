@@ -8,7 +8,7 @@ import { Loader } from 'components/Loader';
 const IMG_BASE_URL = 'http://image.tmdb.org/t/p/';
 const IMG_SIZE = 'w200';
 
-export const Cast = () => {
+const Cast = () => {
   const [status, setStatus] = useState('idle');
   //State machine:
   //idle - простой,
@@ -61,3 +61,4 @@ export const Cast = () => {
   }
   return <div>Cast</div>;
 };
+export default Cast;

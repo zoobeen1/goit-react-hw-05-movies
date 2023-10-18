@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Loader } from 'components/Loader';
 import { Outlet } from 'react-router-dom';
-import { AppBar } from 'components/AppBar';
+import AppBar from 'components/AppBar';
 import { ContainerStyled } from 'components/common/ContainerStyled';
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <>
       <AppBar />
       <ContainerStyled>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </ContainerStyled>
     </>
   );
 };
+
+export default HomePage;

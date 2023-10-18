@@ -7,7 +7,7 @@ const navItems = [
   { href: '/movies', text: 'Movies' },
 ];
 
-export const AppBar = () => {
+const AppBar = () => {
   return (
     <AppBarStyled>
       {navItems.map(({ href, text }) => (
@@ -18,3 +18,4 @@ export const AppBar = () => {
     </AppBarStyled>
   );
 };
+export default AppBar;

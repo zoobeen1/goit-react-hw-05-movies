@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovies } from 'services/api';
 import { Loader } from 'components/Loader';
@@ -18,7 +18,7 @@ import {
 const IMG_BASE_URL = 'http://image.tmdb.org/t/p/';
 const IMG_SIZE = 'w300';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const location = useLocation();
   const backLink = location.state?.from ?? '/';
   const [status, setStatus] = useState('idle');
@@ -51,7 +51,6 @@ export const MovieDetails = () => {
 
   if (status === 'pending') return <Loader />;
   if (movie) {
-    // console.log(location);
     return (
       <>
         <Back>
@@ -94,15 +93,11 @@ export const MovieDetails = () => {
             </ListItem>
           </List>
         </Container>
-
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </>
     );
   }
-
-  return (
-    <div>
-      <p>MovieDetails</p>
-    </div>
-  );
 };
+export default MovieDetails;
